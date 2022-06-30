@@ -44,6 +44,26 @@ class Blackjack
         return $this->deck;
     }
 
-
-
+    public function showPlayerCards(){
+        $playerCards = $this->player->getCards();
+        $playerCardsUni = [];
+        foreach ($playerCards as $card){
+            array_push($playerCardsUni,$card->getUnicodeCharacter(true));
+        }
+        return $playerCardsUni;
+    }
+    public function showDealerCards(){
+        $dealerCards = $this->dealer->getCards();
+        $dealerCardsUni = [];
+        foreach ($dealerCards as $card){
+            array_push($dealerCardsUni,$card->getUnicodeCharacter(true));
+        }
+        return $dealerCardsUni;
+    }
+    public function showPlayerScore(){
+        return $this->player->getScore();
+    }
+    public function showDealerScore(){
+        return $this->dealer->getScore();
+    }
 }

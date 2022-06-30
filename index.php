@@ -3,8 +3,6 @@ declare(strict_types=1);
 
 include_once("Controller/Controller.php");
 
-$controller = new Controller();
-$controller->invoke();
 
 ?>
 <!DOCTYPE html>
@@ -23,10 +21,11 @@ $controller->invoke();
     <header class="border-bottom ">
         <h1 class="text-center">BlackJack + MVC</h1>
     </header>
-    <div class="playerAction text-center">
-        <form method="get">
-            <input type="submit" name="submit" value="New Game" class="btn border-primary"></input>
-        </form>
+    <div class="container">
+        <?php
+        $controller = new Controller();
+        $controller->invoke();
+        ?>
     </div>
 </div>
 </body>

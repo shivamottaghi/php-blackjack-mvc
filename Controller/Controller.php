@@ -1,30 +1,48 @@
 <?php
 
-include_once("Model/Game.php");
+include("Model/Blackjack.php");
 
 class Controller {
-    public $game;
+
+    protected $blackjack;
+    protected string $page = 'homepage';
 
     public function __construct()
     {
-        $this->game = new Game();
+        $this->blackjack = new Blackjack();
     }
 
     public function invoke()
     {
-        var_dump($_GET);
-        if (!isset($_GET['newGame']))
-        {
-            // no special book is requested, we'll show a list of all available books
-            //$gameDeck= $this->game->showDeck();
-            $gameDeck= $this->game->showPlayerCards();
-
-            include 'view/deck.php';}
-        else
-        {
-            // show the requested book
-            $book = $this->model->getBook($_GET['book']);
-            include 'view/viewbook.php';
+        if (isset($_GET['page'])){
+            $this->page = $_GET['page'];
         }
+        switch ($this->page){
+            case 'newGame':
+                $this->blackjack->getDeck()->shuffle();
+                $playerCardsUni= $this->blackjack->showPlayerCards();
+                $dealerCardsUni = $this->blackjack->showDealerCards();
+                $dealerScore = $this->blackjack->showDealerScore();
+                $playerScore = $this->blackjack->showPlayerScore();
+                include 'View/newGameView.php';
+                break;
+            case 'hit':
+                break;
+            case 'stand':
+                break;
+            case 'surrender':
+                break;
+            case 'restart':
+                break;
+
+            default:
+                include 'View/homePageView.php';
+        }
+
+        if (isset($_GET['newGame']))
+        {
+
+        }
+
     }
 }
