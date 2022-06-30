@@ -23,8 +23,12 @@ include_once("Controller/Controller.php");
     </header>
     <div class="container">
         <?php
-        $controller = new Controller();
-        $controller->invoke();
+        if (!isset($_SESSION['controller'])){
+            $controller = new Controller();
+            $controller->invoke();
+            $_SESSION['controller'] = $controller;
+        }
+        $_SESSION['controller']->invoke();
         ?>
     </div>
 </div>

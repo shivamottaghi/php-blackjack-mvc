@@ -19,7 +19,6 @@ class Controller {
         }
         switch ($this->page){
             case 'newGame':
-                $this->blackjack->getDeck()->shuffle();
                 $playerCardsUni= $this->blackjack->showPlayerCards();
                 $dealerCardsUni = $this->blackjack->showDealerCards();
                 $dealerScore = $this->blackjack->showDealerScore();
@@ -34,15 +33,14 @@ class Controller {
                 break;
             case 'restart':
                 break;
-
+            case 'homepage':
+                include 'View/homePageView.php';
+                break;
             default:
                 include 'View/homePageView.php';
+                break;
         }
 
-        if (isset($_GET['newGame']))
-        {
-
-        }
 
     }
 }
